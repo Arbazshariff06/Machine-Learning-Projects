@@ -1,40 +1,60 @@
-About Dataset
-<br>
-Features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image.
-n the 3-dimensional space is that described in: [K. P. Bennett and O. L. Mangasarian: "Robust Linear Programming Discrimination of Two Linearly Inseparable Sets", Optimization Methods and Software 1, 1992, 23-34].
+# 🧪 Logistic Regression Training Project: Cancer Prediction
 
-This database is also available through the UW CS ftp server:
-ftp ftp.cs.wisc.edu
-cd math-prog/cpo-dataset/machine-learn/WDBC/
+## 📌 Project Overview
+This project demonstrates how to build a **Logistic Regression model** to predict whether a tumor is **benign** or **malignant** using the **Breast Cancer Wisconsin dataset**.  
 
-Also can be found on UCI Machine Learning Repository: https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29
+The model uses various cell nucleus features to classify tumors and evaluate its performance through accuracy and other classification metrics.
 
-Attribute Information:
+---
 
-1) ID number
-2) Diagnosis (M = malignant, B = benign)
-3-32)
+## 🧰 Technologies & Libraries Used
+- **Python 3.x**
+- **Pandas** – Data manipulation and analysis  
+- **Matplotlib & Seaborn** – Data visualization  
+- **Scikit-learn (sklearn)** – Machine learning (Logistic Regression, preprocessing, evaluation)
 
-Ten real-valued features are computed for each cell nucleus:
+---
 
-a) radius (mean of distances from center to points on the perimeter)
-b) texture (standard deviation of gray-scale values)
-c) perimeter
-d) area
-e) smoothness (local variation in radius lengths)
-f) compactness (perimeter^2 / area - 1.0)
-g) concavity (severity of concave portions of the contour)
-h) concave points (number of concave portions of the contour)
-i) symmetry
-j) fractal dimension ("coastline approximation" - 1)
+## 📂 Dataset Information
+- **Dataset:** `data.csv` (Breast Cancer Wisconsin Dataset)  
+- **Key Feature:** `diagnosis` (target variable)  
+  - `M` = Malignant  
+  - `B` = Benign  
+- **Unnecessary columns removed:** `id`, `Unnamed: 32`
 
-The mean, standard error and "worst" or largest (mean of the three
-largest values) of these features were computed for each image,
-resulting in 30 features. For instance, field 3 is Mean Radius, field
-13 is Radius SE, field 23 is Worst Radius.
+### 📊 Features
+The dataset includes multiple numerical features related to:
+- Radius
+- Texture
+- Perimeter
+- Area
+- Smoothness
+- Compactness
+- Concavity
+- Symmetry
+- Fractal Dimension
 
-All feature values are recoded with four significant digits.
+---
 
-Missing attribute values: none
+## 🧼 Data Preprocessing
+1. **Load the dataset** using Pandas.
+2. **Explore data** using `.info()`, `.describe()`, and `head()`.
+3. **Visualize missing values** using `sns.heatmap()`.
+4. **Drop unnecessary columns** (`id` and `Unnamed: 32`).
+5. **Encode labels**: Malignant → 1, Benign → 0.
+6. **Convert labels** to categorical type.
+7. **Normalize** the features using `StandardScaler` to standardize the data.
 
-Class distribution: 357 benign, 212 malignant
+---
+
+## 🧠 Model Building
+1. **Split the dataset**: 70% training, 30% testing.
+2. **Initialize** `LogisticRegression` model.
+3. **Train** the model on training data.
+4. **Predict** outcomes on the test set.
+
+```python
+from sklearn.linear_model import LogisticRegression
+classification = LogisticRegression()
+classification.fit(X_train, y_train)
+y_pred = classification.predict(X_test)
